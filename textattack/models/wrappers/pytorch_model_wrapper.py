@@ -88,6 +88,8 @@ class PyTorchModelWrapper(ModelWrapper):
 
         output = torch.argmax(predictions.logits, dim=1)
         #output = predictions.argmax(dim=1)
+
+        output = F.one_hot(output, num_classes=predictions.logits.size(-1)).float()
         print(output)
         print(predictions)
         loss = loss_fn(predictions, output)
