@@ -100,6 +100,7 @@ class WordSwapGradientBased(WordSwap):
             except:
                 print(idx_in_vocab)
                 word = self.tokenizer.convert_ids_to_tokens(idx_in_vocab)
+
             if (not utils.has_letter(word)) or (len(utils.words_from_text(word)) != 1):
                 # Do not consider words that are solely letters or punctuation.
                 continue
@@ -107,6 +108,8 @@ class WordSwapGradientBased(WordSwap):
             if len(candidates) == self.top_n:
                 break
 
+        print(f"To attack: {attacked_text}")
+        print(candidates)
         return candidates
 
     def _get_transformations(self, attacked_text, indices_to_replace):
