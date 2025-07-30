@@ -92,8 +92,8 @@ class PyTorchModelWrapper(ModelWrapper):
 
         output = F.one_hot(output, num_classes=predictions.logits.size(-1)).float()
         print(output)
-        print(predictions)
-        loss = loss_fn(predictions, output)
+        print(predictions.logits)
+        loss = loss_fn(predictions.logits, output)
         loss.backward()
 
         # grad w.r.t to word embeddings
