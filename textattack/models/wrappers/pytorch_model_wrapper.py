@@ -86,6 +86,8 @@ class PyTorchModelWrapper(ModelWrapper):
 
         predictions = self.model(**ids_attn) #ids)
 
+        print(predictions)
+        print(predictions.shape)
         output = predictions.argmax(dim=1)
         loss = loss_fn(predictions, output)
         loss.backward()

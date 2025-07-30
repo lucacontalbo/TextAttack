@@ -163,8 +163,6 @@ class GoalFunction(ReprMixin, ABC):
         i = 0
         while i < len(inputs):
             batch = inputs[i : i + self.batch_size]
-            print(batch)
-            print(type(batch))
 
             batch_preds = self.model(batch)
 
