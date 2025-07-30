@@ -86,8 +86,6 @@ class PyTorchModelWrapper(ModelWrapper):
 
         predictions = self.model(**ids_attn) #ids)
 
-        print(predictions)
-        print(predictions.shape)
         output = torch.argmax(predictions.logits, dim=1)
         #output = predictions.argmax(dim=1)
         print(output)
