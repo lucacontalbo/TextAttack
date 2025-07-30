@@ -88,7 +88,10 @@ class PyTorchModelWrapper(ModelWrapper):
 
         print(predictions)
         print(predictions.shape)
-        output = predictions.argmax(dim=1)
+        output = torch.argmax(predictions.logits, dim=1)
+        #output = predictions.argmax(dim=1)
+        print(output)
+        print(predictions)
         loss = loss_fn(predictions, output)
         loss.backward()
 
