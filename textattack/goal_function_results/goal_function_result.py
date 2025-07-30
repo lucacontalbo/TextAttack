@@ -53,7 +53,7 @@ class GoalFunctionResult(ABC):
         self.goal_function_result_type = goal_function_result_type
 
         if isinstance(self.raw_output, torch.Tensor):
-            self.raw_output = self.raw_output.numpy()
+            self.raw_output = self.raw_output.detach().numpy()
 
         if isinstance(self.score, torch.Tensor):
             self.score = self.score.item()
