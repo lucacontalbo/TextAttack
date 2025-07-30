@@ -78,10 +78,13 @@ class PyTorchModelWrapper(ModelWrapper):
 
         self.model.zero_grad()
         model_device = next(self.model.parameters()).device
-        ids = self.tokenizer([text_input])
-        ids = torch.tensor(ids).to(model_device)
+        """ids = self.tokenizer([text_input])
+        ids = torch.tensor(ids).to(model_device)"""
 
-        predictions = self.model(ids)
+        ids_attn = self.tokenizer([text_input], return_tensors="pt", padding=True, truncation=True).to(model_device)
+        ids = ids_attn['input_ids']
+
+        predictions = self.model(**ids_attn) #ids)
 
         output = predictions.argmax(dim=1)
         loss = loss_fn(predictions, output)

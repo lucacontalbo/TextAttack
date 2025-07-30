@@ -95,7 +95,8 @@ def validate_model_gradient_word_swap_compatibility(model):
     if isinstance(model, textattack.models.helpers.LSTMForClassification):
         return True
     else:
-        raise ValueError(f"Cannot perform GradientBasedWordSwap on model {model}.")
+        return True # removing check so BERT can be used with HotFlip
+        #raise ValueError(f"Cannot perform GradientBasedWordSwap on model {model}.")
 
 
 def transformation_consists_of(transformation, transformation_classes):
